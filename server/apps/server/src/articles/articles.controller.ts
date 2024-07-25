@@ -7,6 +7,11 @@ import { UpdateArticleDto } from './dto/update-article.dto';
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
+  @Get('fetch')
+  fetchAndSaveArticles() {
+    return this.articlesService.fetchAndSaveArticles();
+  }
+
   @Post()
   create(@Body() createArticleDto: CreateArticleDto) {
     return this.articlesService.create(createArticleDto);
