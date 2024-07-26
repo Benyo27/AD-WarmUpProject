@@ -44,7 +44,7 @@ export class ArticlesService {
   }
 
   findAll() {
-    return this.articleModel.find();
+    return this.articleModel.find().sort({ created_at: -1 });
   }
 
   remove(title: string) {
