@@ -17,8 +17,8 @@ export class ArticlesController {
     return this.articlesService.findAll();
   }
 
-  @Delete(':title')
-  remove(@Param('title') title: string) {
-    return this.articlesService.remove(title);
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.articlesService.remove(id);
   }
 }

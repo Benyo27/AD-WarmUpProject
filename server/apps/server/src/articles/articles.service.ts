@@ -47,7 +47,7 @@ export class ArticlesService {
     return this.articleModel.find().sort({ created_at: -1 });
   }
 
-  remove(title: string) {
-    return this.articleModel.deleteOne({ title });
+  remove(_id: string) {
+    return this.articleModel.deleteOne({ _id });
   }
 }
