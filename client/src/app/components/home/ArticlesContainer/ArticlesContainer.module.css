@@ -1,0 +1,42 @@
+.Article article {
+    border: 1px solid #ccc;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+}
+
+.Article article > div:first-child {
+    display: flex;
+    flex-grow: 1;
+}
+
+.Article article > div:first-child > span {
+    margin-right: 0.5rem;
+}
+
+.Article article > div:nth-child(2) {
+    margin-right: 3rem;
+    text-align: right;
+}
+
+.Article article > div:last-child {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.Article article:hover > div:last-child {
+    opacity: 1;
+}
+
+.Article:hover {
+    background-color: #fafafa;
+}
+
+.Article a {
+    text-decoration: none;
+}
+
+.author {
+    color: #999;
+}
