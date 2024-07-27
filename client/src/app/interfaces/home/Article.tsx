@@ -3,4 +3,5 @@ interface Article {
     created_at: string;
     title: string;
     url: string;
+    _id: string;
 }
