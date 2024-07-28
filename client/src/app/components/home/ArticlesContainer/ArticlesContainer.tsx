@@ -46,7 +46,7 @@ export const ArticlesContainer = () => {
                                 <span>{article.title}.</span>
                                 <span className={styles.author}>- {article.author} -</span>
                             </div>
-                            <div>{article.created_at}</div>
+                            <div>{article.created_at_formated}</div>
                             <div onClick={(event) => {handleDelete(event, article._id)}}>🗑️</div>
                         </article>
                     </a>
