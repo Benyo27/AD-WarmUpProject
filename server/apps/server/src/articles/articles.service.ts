@@ -7,6 +7,7 @@ import { Model } from 'mongoose';
 import { HttpService } from '@nestjs/axios';
 import { UTCDate } from '@date-fns/utc';
 import { parseISO, format, differenceInDays } from 'date-fns';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 const formatDate = (created_at: string) => {
   const parsedDate = parseISO(created_at);
@@ -29,6 +30,7 @@ export class ArticlesService {
     private readonly httpService: HttpService,
   ) {}
 
+  @Cron(CronExpression.EVERY_HOUR)
   async fetchAndSaveArticles() {
     await this.articleModel.deleteMany({});
 
