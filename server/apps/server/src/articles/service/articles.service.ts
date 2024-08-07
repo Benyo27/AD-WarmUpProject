@@ -3,23 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Article, ArticleDocument } from '../schema/articles.schema';
 import { Model } from 'mongoose';
 import { HttpService } from '@nestjs/axios';
-import { UTCDate } from '@date-fns/utc';
-import { parseISO, format, differenceInDays } from 'date-fns';
 import { Cron, CronExpression } from '@nestjs/schedule';
-
-const formatDate = (created_at: string) => {
-  const parsedDate = parseISO(created_at);
-  const now = new Date();
-
-  const daysDifference = differenceInDays(now, parsedDate);
-  if (daysDifference < 1) {
-    return format(new UTCDate(created_at), 'hh:mm aaa');
-  } else if (daysDifference === 1) {
-    return 'Yesterday';
-  } else {
-    return format(created_at, 'MMM d');
-  }
-};
+import { formatDate } from '../utils/formatDate';
 
 @Injectable()
 export class ArticlesService {
