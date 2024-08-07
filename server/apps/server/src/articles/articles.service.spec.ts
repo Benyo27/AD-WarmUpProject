@@ -5,6 +5,7 @@ import { Connection, Model, connect } from 'mongoose';
 import { Article, ArticleSchema } from './schema/articles.schema';
 import { getModelToken } from '@nestjs/mongoose';
 import { HttpModule } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
 
 describe('ArticlesService', () => {
   let mongod: MongoMemoryServer;
@@ -20,7 +21,7 @@ describe('ArticlesService', () => {
     articleModel = mongoConnection.model(Article.name, ArticleSchema);
 
     const module: TestingModule = await Test.createTestingModule({
-      imports: [HttpModule],
+      imports: [HttpModule, ConfigModule.forRoot()],
       providers: [
         ArticlesService,
         {
