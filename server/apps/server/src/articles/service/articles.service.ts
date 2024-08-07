@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Article, ArticleDocument } from './schema/articles.schema';
+import { Article, ArticleDocument } from '../schema/articles.schema';
 import { Model } from 'mongoose';
 import { HttpService } from '@nestjs/axios';
 import { UTCDate } from '@date-fns/utc';
