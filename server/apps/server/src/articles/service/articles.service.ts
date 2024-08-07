@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { HttpService } from '@nestjs/axios';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { formatDate } from '../utils/formatDate';
+import { isNotValidOrAlreadyExists } from '../utils/isNotValidOrAlreadyExists';
 
 @Injectable()
 export class ArticlesService {
@@ -26,13 +27,7 @@ export class ArticlesService {
       const existingArticle = await this.articleModel.findOne({
         title: article.title || article.story_title,
       });
-      if (
-        !article.author ||
-        !article.created_at ||
-        (!article.title && !article.story_title) ||
-        (!article.url && !article.story_url) ||
-        existingArticle
-      ) {
+      if (isNotValidOrAlreadyExists(article, existingArticle)) {
         continue;
       }
       const created_at_formated = formatDate(article.created_at);
