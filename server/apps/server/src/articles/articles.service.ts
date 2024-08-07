@@ -33,7 +33,7 @@ export class ArticlesService {
     await this.articleModel.deleteMany({});
 
     const response = await this.httpService.axiosRef.get(
-      'https://hn.algolia.com/api/v1/search_by_date?query=nodejs',
+      process.env.ARTICLES_API_URL,
     );
     const articles = response.data.hits;
 
