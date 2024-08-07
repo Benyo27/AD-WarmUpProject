@@ -9,7 +9,7 @@ export class Article {
   author: string;
 
   @Prop({ required: true })
-  created_at: Date;
+  created_at: string;
 
   @Prop({ required: true })
   created_at_formated: string;
