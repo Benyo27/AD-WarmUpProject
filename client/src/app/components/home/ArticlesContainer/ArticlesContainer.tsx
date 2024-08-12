@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import styles from "./ArticlesContainer.module.css";
+import { ArticleItem } from "../ArticleItem";
 
 const deleteArticle = async (id: string) => {
     try {
@@ -39,18 +39,7 @@ export const ArticlesContainer = () => {
     return (
         <main>
             {articles.map((article: Article) => (
-                <section key={article.title} className={styles.Article}>
-                    <a href={article.url}>
-                        <article>
-                            <div>
-                                <span>{article.title}.</span>
-                                <span className={styles.author}>- {article.author} -</span>
-                            </div>
-                            <div>{article.created_at_formated}</div>
-                            <div onClick={(event) => {handleDelete(event, article._id)}}>🗑️</div>
-                        </article>
-                    </a>
-                </section>
+                <ArticleItem key={article._id} article={article} onDelete={handleDelete} />
             ))}
         </main>
     )
