@@ -1,25 +1,22 @@
 import { ArticlesRepository } from '../repository/articles.repository';
-import { HttpService } from '@nestjs/axios';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { formatDate } from '../utils/formatDate';
 import { isNotValidOrAlreadyExists } from '../utils/isNotValidOrAlreadyExists';
 import { Injectable } from '@nestjs/common';
+import { ArticlesProvider } from '../provider/articles.provider';
 
 @Injectable()
 export class ArticlesService {
   constructor(
     private readonly articlesRepository: ArticlesRepository,
-    private readonly httpService: HttpService,
+    private readonly articlesProvider: ArticlesProvider,
   ) {}
 
   @Cron(CronExpression.EVERY_HOUR)
   async fetchAndSaveArticles() {
     await this.articlesRepository.deleteMany();
 
-    const response = await this.httpService.axiosRef.get(
-      process.env.ARTICLES_API_URL,
-    );
-    const articles = response.data.hits;
+    const articles = await this.articlesProvider.fetchArticles();
 
     for (const article of articles) {
       const existingArticle = await this.articlesRepository.findOne(

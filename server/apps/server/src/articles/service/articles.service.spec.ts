@@ -7,6 +7,7 @@ import { getModelToken } from '@nestjs/mongoose';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { ArticlesRepository } from '../repository/articles.repository';
+import { ArticlesProvider } from '../provider/articles.provider';
 
 describe('ArticlesService', () => {
   let mongod: MongoMemoryServer;
@@ -26,6 +27,7 @@ describe('ArticlesService', () => {
       providers: [
         ArticlesService,
         ArticlesRepository,
+        ArticlesProvider,
         {
           provide: getModelToken(Article.name),
           useValue: articleModel,
