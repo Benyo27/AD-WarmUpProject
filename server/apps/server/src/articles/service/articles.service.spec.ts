@@ -6,6 +6,7 @@ import { Article, ArticleSchema } from '../schema/articles.schema';
 import { getModelToken } from '@nestjs/mongoose';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { ArticlesRepository } from '../repository/articles.repository';
 
 describe('ArticlesService', () => {
   let mongod: MongoMemoryServer;
@@ -24,6 +25,7 @@ describe('ArticlesService', () => {
       imports: [HttpModule, ConfigModule.forRoot()],
       providers: [
         ArticlesService,
+        ArticlesRepository,
         {
           provide: getModelToken(Article.name),
           useValue: articleModel,
