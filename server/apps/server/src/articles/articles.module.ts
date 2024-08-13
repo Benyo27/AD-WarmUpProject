@@ -5,6 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Article, ArticleSchema } from './schema/articles.schema';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { ArticlesProvider } from './provider/articles.provider';
+import { ArticlesRepository } from './repository/articles.repository';
 
 @Module({
   imports: [
@@ -13,6 +15,6 @@ import { ConfigModule } from '@nestjs/config';
     HttpModule,
   ],
   controllers: [ArticlesController],
-  providers: [ArticlesService],
+  providers: [ArticlesService, ArticlesProvider, ArticlesRepository],
 })
 export class ArticlesModule {}
